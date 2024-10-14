@@ -82,17 +82,25 @@
 
         <script>
             let firstClickTime;
+            const minClickInterval = 10; // Set to 10ms
 
             document.getElementById("firstButton").addEventListener("click", () => {
-                firstClickTime = new Date().getTime();
+                firstClickTime = performance.now();
                 document.getElementById("secondButton").disabled = false;
             });
 
             document.getElementById("secondButton").addEventListener("click", () => {
-                const secondClickTime = new Date().getTime();
+                const secondClickTime = performance.now();
                 const timeDifference = secondClickTime - firstClickTime;
-                document.getElementById("timeDifference").innerText = timeDifference;
-                document.getElementById("secondButton").disabled = true;
+
+                // Check if the time difference is greater than 10ms
+                if (timeDifference >= minClickInterval) {
+                    document.getElementById("timeDifference").innerText =
+                        timeDifference.toFixed(3);
+                    document.getElementById("secondButton").disabled = true;
+                } else {
+                    alert("Clicks are too fast! Please click after 10ms.");
+                }
             });
         </script>
     </body>
