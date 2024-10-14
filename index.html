@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Time Difference Between Button Clicks</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                text-align: center;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                margin-bottom: 20px;
+            }
+
+            p {
+                margin-bottom: 20px;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+            }
+
+            .btn:disabled {
+                background-color: #cccccc;
+            }
+
+            .result {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Click the Buttons</h1>
+            <p>
+                Click the first button, then click the second button to see the time
+                difference.
+            </p>
+
+            <div class="buttons">
+                <button id="firstButton" class="btn">First Button</button>
+                <button id="secondButton" class="btn" disabled>Second Button</button>
+            </div>
+
+            <p id="result" class="result">
+                Time difference: <span id="timeDifference">0</span> ms
+            </p>
+        </div>
+
+        <script>
+            let firstClickTime;
+
+            document.getElementById("firstButton").addEventListener("click", () => {
+                firstClickTime = new Date().getTime();
+                document.getElementById("secondButton").disabled = false;
+            });
+
+            document.getElementById("secondButton").addEventListener("click", () => {
+                const secondClickTime = new Date().getTime();
+                const timeDifference = secondClickTime - firstClickTime;
+                document.getElementById("timeDifference").innerText = timeDifference;
+                document.getElementById("secondButton").disabled = true;
+            });
+        </script>
+    </body>
+</html>
