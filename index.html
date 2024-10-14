@@ -84,12 +84,12 @@
             let firstClickTime;
             const minClickInterval = 10; // Set to 10ms
 
-            document.getElementById("firstButton").addEventListener("click", () => {
+            document.getElementById("firstButton").addEventListener("mousedown", () => {
                 firstClickTime = performance.now();
                 document.getElementById("secondButton").disabled = false;
             });
 
-            document.getElementById("secondButton").addEventListener("click", () => {
+            document.getElementById("secondButton").addEventListener("mousedown", () => {
                 const secondClickTime = performance.now();
                 const timeDifference = secondClickTime - firstClickTime;
 
